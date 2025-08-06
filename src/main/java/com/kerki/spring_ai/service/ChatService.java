@@ -1,5 +1,7 @@
 package com.kerki.spring_ai.service;
 
+import java.util.List;
+
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.UserMessage;
@@ -26,16 +28,20 @@ public class ChatService {
         var response = chatClient.prompt(new Prompt(history)).call();
 
         // Extract assistant's reply
-        String assistantReply = response.chatResponse().getResult().getOutput().getText();
+        AssistantMessage assistantReply = response.chatResponse().getResult().getOutput();
 
         // Add assistant's reply to session history
-        chatSessionManager.addMessage(sessionId, new AssistantMessage(assistantReply));
+        chatSessionManager.addMessage(sessionId, assistantReply);
 
-        return assistantReply;
+        return assistantReply.getText();
     }
 
     public boolean clearSession(String sessionId) {
         return chatSessionManager.clearSession(sessionId);
+    }
+
+    public List<String> getMessageHistory(String sessionId) {
+        return chatSessionManager.getMessageHistory(sessionId);
     }
 
 }
