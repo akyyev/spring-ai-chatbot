@@ -1,0 +1,11 @@
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}  # Set your OpenAI API key here
+      
+  application:
+    name: spring-ai
+
+  redis:
+    host: localhost    # Change to your Redis host
+    port: 6379         # Default Redis port
