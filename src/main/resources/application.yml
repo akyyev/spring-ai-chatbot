@@ -1,7 +1,7 @@
 spring:
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}  # Set your OpenAI API key here
+      api-key: ${OPENAI_API_KEY}  # Set your OpenAI API key in environment variable
       
   application:
     name: spring-ai

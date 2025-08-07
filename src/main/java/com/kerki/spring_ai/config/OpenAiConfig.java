@@ -9,7 +9,9 @@ public class OpenAiConfig {
     
     @Bean
     public ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
-        return chatClientBuilder.build();
+        return chatClientBuilder
+            .defaultSystem("You are a helpful assistant.")
+            .build();
     }
 
 }
